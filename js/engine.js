@@ -29,6 +29,8 @@ export function initEngine(canvas) {
 
     Render.run(render);
     Engine.run(engine);
+
+    return render;
 }
 
 export function addBody(body) {
