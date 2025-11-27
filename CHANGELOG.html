@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - Physics Sandbox</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { background: var(--bg-color); color: var(--text-color); padding: 20px; overflow: auto; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; }
+        pre { background: var(--sidebar-bg); padding: 15px; border-radius: 8px; overflow-x: auto; }
+        a { color: var(--button-bg); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧲 Physics Sandbox Changelog</h1>
+        <a href="index.html">← Back to App</a>
+        <pre>
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- Home screen with welcome message and start button
+- Changelog page
+- Improved CSS with gradients, animations, and better styling
+- Backdrop blur effect for sidebar
+- Links to documentation and changelog
+
+### Changed
+- Updated Matter.js usage to use Runner instead of deprecated Engine.run
+- Enhanced button hover effects and transitions
+- Improved color scheme with gradients
+
+### Fixed
+- ES module import issues by using global Matter object
+- Touch support for mobile dragging
+- Divergent branch syncing issues
+- Save/load functionality for proper object restoration
+
+### Technical
+- Switched to Runner.run for engine execution
+- Added home screen overlay before simulation starts
+- Enhanced responsive design
+        </pre>
+    </div>
+</body>
+</html>

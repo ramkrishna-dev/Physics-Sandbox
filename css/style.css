@@ -1,18 +1,22 @@
 /* CSS Variables for Themes */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --sidebar-bg: #f0f0f0;
-    --button-bg: #e0e0e0;
-    --button-hover: #d0d0d0;
+    --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --text-color: #ffffff;
+    --sidebar-bg: rgba(255, 255, 255, 0.95);
+    --button-bg: #667eea;
+    --button-hover: #5a6fd8;
+    --button-text: #ffffff;
+    --sidebar-shadow: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --sidebar-bg: #1e1e1e;
-    --button-bg: #333333;
-    --button-hover: #555555;
+    --bg-color: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    --text-color: #ecf0f1;
+    --sidebar-bg: rgba(44, 62, 80, 0.95);
+    --button-bg: #34495e;
+    --button-hover: #2c3e50;
+    --button-text: #ecf0f1;
+    --sidebar-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Reset and Base Styles */
@@ -23,10 +27,72 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
     color: var(--text-color);
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#home-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    text-align: center;
+    padding: 20px;
+}
+
+#home-screen h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#home-screen p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+#start-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px var(--sidebar-shadow);
+}
+
+#start-btn:hover {
+    background: var(--button-hover);
+    transform: scale(1.05);
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: var(--button-bg);
 }
 
 #app {
@@ -46,14 +112,16 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 280px;
     height: 100%;
-    background-color: var(--sidebar-bg);
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(10px);
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 10;
     padding: 20px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    box-shadow: -2px 0 10px var(--sidebar-shadow);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #sidebar.open {
@@ -78,17 +146,26 @@ body {
 button {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 10px;
     background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px var(--sidebar-shadow);
 }
 
 button:hover {
     background-color: var(--button-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--sidebar-shadow);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 label {

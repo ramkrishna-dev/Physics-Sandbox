@@ -1,5 +1,5 @@
 const Matter = window.Matter;
-const { Engine, World, Render, Bodies, Body, Composite } = Matter;
+const { Engine, World, Render, Bodies, Body, Composite, Runner } = Matter;
 
 let engine;
 let world;
@@ -29,7 +29,8 @@ export function initEngine(canvas) {
     World.add(world, [ground, leftWall, rightWall, ceiling]);
 
     Render.run(render);
-    Engine.run(engine);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
 
     return render;
 }
