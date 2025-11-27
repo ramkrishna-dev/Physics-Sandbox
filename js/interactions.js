@@ -8,7 +8,7 @@ let canvas;
 
 export function initInteractions(canvasElement, render) {
     canvas = canvasElement;
-    mouse = Mouse.create(canvas);
+    mouse = Mouse.create(canvas, { touch: true });
     mouseConstraint = MouseConstraint.create(render.engine, {
         mouse: mouse,
         constraint: {
