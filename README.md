@@ -48,18 +48,38 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Safari, Edge)
-- No server required - runs entirely in the browser!
+- For local development: a simple HTTP server (see below)
 
-### Installation
+### Local Development
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/physics-sandbox.git
    cd physics-sandbox
    ```
 
-2. **Open in browser**:
-   - Simply open `index.html` in your web browser
-   - No build process or dependencies needed!
+2. **Run a local server**:
+   - Due to ES module imports, you need to serve the files via HTTP
+   - **Option 1: Python (recommended)**
+     ```bash
+     python -m http.server 8000
+     ```
+     Then open `http://localhost:8000` in your browser
+   - **Option 2: Node.js**
+     ```bash
+     npx http-server
+     ```
+   - **Option 3: VS Code Live Server extension**
+     - Install the extension
+     - Right-click `index.html` and select "Open with Live Server"
+
+### 🌐 Deploy to GitHub Pages
+1. Push your code to a GitHub repository
+2. Go to **Settings** > **Pages**
+3. Select **Deploy from a branch** and choose `main` (or your default branch)
+4. Click **Save**
+5. Your site will be live at `https://yourusername.github.io/physics-sandbox/`
+
+No build process or additional dependencies needed!
 
 ## 📱 Mobile Usage
 
