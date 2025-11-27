@@ -1,4 +1,5 @@
-import { Mouse, MouseConstraint, Events, Body, Vector, Query, World } from 'matter-js';
+const Matter = window.Matter;
+const { Mouse, MouseConstraint, Events, Body, Vector, Query, World } = Matter;
 import { removeBody, applyImpulse, getWorld } from './engine.js';
 
 let mouse;

@@ -1,4 +1,5 @@
-import { Bodies } from 'matter-js';
+const Matter = window.Matter;
+const { Bodies } = Matter;
 
 export function createCircle(x, y, radius = 20) {
     return Bodies.circle(x, y, radius, {

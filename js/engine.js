@@ -1,4 +1,5 @@
-import { Engine, World, Render, Bodies, Body, Composite } from 'matter-js';
+const Matter = window.Matter;
+const { Engine, World, Render, Bodies, Body, Composite } = Matter;
 
 let engine;
 let world;

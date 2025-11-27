@@ -1,5 +1,6 @@
 import { addBody, clearAllBodies, toggleGravity, getWorld } from './engine.js';
-import { Body } from 'matter-js';
+const Matter = window.Matter;
+const { Body } = Matter;
 import { createRandomCircle, createRandomRectangle, createCircle, createRectangle } from './objects.js';
 import { setCurrentTool } from './interactions.js';
 
