@@ -1,6 +1,6 @@
 const Matter = window.Matter;
 const { Mouse, MouseConstraint, Events, Body, Vector, Query, World } = Matter;
-import { removeBody, applyImpulse, getWorld } from './engine.js';
+import { removeBody, applyImpulse, getWorld, applyExplosion } from './engine.js';
 
 let mouse;
 let mouseConstraint;
@@ -38,13 +38,18 @@ export function initInteractions(canvasElement, render) {
 }
 
 function handleMouseDown(event) {
-    const body = event.source.body;
-    if (body && !body.isStatic) {
-        if (currentTool === 'delete') {
-            removeBody(body);
-        } else if (currentTool === 'impulse') {
-            const force = Vector.create(0, -0.05);
-            applyImpulse(body, force);
+    const mousePosition = event.mouse.position;
+    if (currentTool === 'explosion') {
+        applyExplosion(mousePosition.x, mousePosition.y);
+    } else {
+        const body = event.source.body;
+        if (body && !body.isStatic) {
+            if (currentTool === 'delete') {
+                removeBody(body);
+            } else if (currentTool === 'impulse') {
+                const force = Vector.create(0, -0.05);
+                applyImpulse(body, force);
+            }
         }
     }
 }
@@ -60,17 +65,21 @@ function handleTouchStart(event) {
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
 
-    // Simulate mouse event
-    const bodies = getWorld().bodies;
-    for (let body of bodies) {
-        if (body && !body.isStatic && Query.point([body], { x, y }).length > 0) {
-            if (currentTool === 'delete') {
-                removeBody(body);
-            } else if (currentTool === 'impulse') {
-                const force = Vector.create(0, -0.05);
-                applyImpulse(body, force);
+    if (currentTool === 'explosion') {
+        applyExplosion(x, y);
+    } else {
+        // Simulate mouse event
+        const bodies = getWorld().bodies;
+        for (let body of bodies) {
+            if (body && !body.isStatic && Query.point([body], { x, y }).length > 0) {
+                if (currentTool === 'delete') {
+                    removeBody(body);
+                } else if (currentTool === 'impulse') {
+                    const force = Vector.create(0, -0.05);
+                    applyImpulse(body, force);
+                }
+                break;
             }
-            break;
         }
     }
 }

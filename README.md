@@ -21,6 +21,7 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 - **Drag & Drop**: Move objects with mouse or touch
 - **Delete Tool**: Remove objects with a tap/click
 - **Impulse Tool**: Apply forces to objects for dynamic motion
+- **Explosion Tool**: Create radial explosions at click/tap
 - **Clear All**: Reset the scene instantly
 
 ### 📱 Mobile-Friendly UI
@@ -38,10 +39,12 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 - Import saved scenes
 - Autosave functionality (theme only, for now)
 
+### 📷 Additional Tools
+- **Grid Overlay**: Toggle grid for precise positioning
+- **Screenshot**: Capture and download simulation screenshots
+
 ### 🚀 Future Enhancements
 - Soft bodies and constraints (ropes, ragdolls)
-- Explosions and radial forces
-- Grid overlays and screenshot export
 - Custom object properties editor
 
 ## 🚀 Quick Start

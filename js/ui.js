@@ -1,4 +1,4 @@
-import { addBody, clearAllBodies, toggleGravity, getWorld } from './engine.js';
+import { addBody, clearAllBodies, toggleGravity, getWorld, toggleGrid, takeScreenshot, applyExplosion } from './engine.js';
 const Matter = window.Matter;
 const { Body } = Matter;
 import { createRandomCircle, createRandomRectangle, createCircle, createRectangle } from './objects.js';
@@ -15,7 +15,10 @@ export function initUI() {
     const impulseToolBtn = document.getElementById('impulse-tool');
     const clearAllBtn = document.getElementById('clear-all');
     const gravityToggle = document.getElementById('gravity-toggle');
+    const gridToggle = document.getElementById('grid-toggle');
     const toggleThemeBtn = document.getElementById('toggle-theme');
+    const screenshotBtn = document.getElementById('screenshot-btn');
+    const explosionToolBtn = document.getElementById('explosion-tool');
     const saveBtn = document.getElementById('save-scene');
     const loadBtn = document.getElementById('load-scene');
     const loadFileInput = document.getElementById('load-file');
@@ -51,9 +54,21 @@ export function initUI() {
         toggleGravity(e.target.checked);
     });
 
+    gridToggle.addEventListener('change', (e) => {
+        toggleGrid(e.target.checked);
+    });
+
     toggleThemeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
         localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    screenshotBtn.addEventListener('click', () => {
+        takeScreenshot();
+    });
+
+    explosionToolBtn.addEventListener('click', () => {
+        setCurrentTool('explosion');
     });
 
     // Load theme
