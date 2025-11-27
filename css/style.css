@@ -113,6 +113,21 @@ body {
     color: var(--button-bg);
 }
 
+footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+footer a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
 #app {
     position: relative;
     width: 100vw;
@@ -158,7 +173,11 @@ body {
 }
 
 #sidebar-content h2 {
-    margin-bottom: 20px;
+    margin: 20px 0 10px 0;
+    font-size: 1.1em;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
 }
 
 button {

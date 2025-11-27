@@ -108,6 +108,13 @@ Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
 - Submitting pull requests
 - Reporting issues
 
+## 📄 Pages
+
+- [Home](index.html) - Main physics sandbox application
+- [About](about.html) - Learn more about the project
+- [Help](help.html) - User guide and instructions
+- [Changelog](CHANGELOG.html) - Version history and updates
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -13,27 +13,36 @@
             <p>Explore physics with interactive simulations. Create, drag, and destroy objects in a 2D world powered by Matter.js.</p>
             <button id="start-btn">Start Simulating</button>
             <div class="links">
-                <a href="CHANGELOG.html">Changelog</a> | <a href="README.md">Documentation</a>
+                <a href="about.html">About</a> | <a href="help.html">Help</a> | <a href="CHANGELOG.html">Changelog</a> | <a href="README.md">Documentation</a>
             </div>
+            <footer>
+                <p>Built with ❤️ using Matter.js | <a href="https://github.com/ramkrishna-dev/Physics-Sandbox">GitHub</a></p>
+            </footer>
         </div>
         <canvas id="canvas" style="display: none;"></canvas>
         <div id="sidebar">
             <button id="toggle-sidebar">☰</button>
             <div id="sidebar-content">
-                <h2>Tools</h2>
-                <button id="create-circle">Circle</button>
-                <button id="create-rectangle">Rectangle</button>
-                <button id="create-ragdoll">Ragdoll</button>
-                <button id="delete-tool">Delete</button>
-                <button id="impulse-tool">Impulse</button>
-                <button id="clear-all">Clear All</button>
-                <label><input type="checkbox" id="gravity-toggle"> Gravity</label>
-                <label><input type="checkbox" id="grid-toggle"> Grid</label>
-                <button id="toggle-theme">Dark Mode</button>
-                <button id="screenshot-btn">Screenshot</button>
-                <button id="explosion-tool">Explosion</button>
-                <button id="save-scene">Save</button>
-                <button id="load-scene">Load</button>
+                <h2>🎨 Creation</h2>
+                <button id="create-circle">⚪ Circle</button>
+                <button id="create-rectangle">▭ Rectangle</button>
+                <button id="create-ragdoll">🕺 Ragdoll</button>
+                
+                <h2>🔧 Tools</h2>
+                <button id="delete-tool">🗑️ Delete</button>
+                <button id="impulse-tool">💥 Impulse</button>
+                <button id="explosion-tool">💣 Explosion</button>
+                <button id="clear-all">🧹 Clear All</button>
+                
+                <h2>⚙️ Settings</h2>
+                <label><input type="checkbox" id="gravity-toggle"> 🌍 Gravity</label>
+                <label><input type="checkbox" id="grid-toggle"> 📐 Grid</label>
+                <button id="toggle-theme">🌙 Dark Mode</button>
+                
+                <h2>💾 File</h2>
+                <button id="screenshot-btn">📸 Screenshot</button>
+                <button id="save-scene">💾 Save</button>
+                <button id="load-scene">📁 Load</button>
                 <input type="file" id="load-file" accept=".json" style="display:none;">
             </div>
         </div>
