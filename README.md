@@ -53,7 +53,7 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 ### Local Development
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/physics-sandbox.git
+   git clone https://github.com/ramkrishna-dev/physics-sandbox.git
    cd physics-sandbox
    ```
 
