@@ -14,7 +14,7 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 - Powered by the robust Matter.js physics engine
 
 ### 🎨 Object Creation
-- Spawn circles and rectangles with random properties
+- Spawn circles, rectangles, and ragdolls with random properties
 - Customizable physics attributes (coming soon)
 
 ### 👆 Interactions
@@ -44,7 +44,7 @@ A fun and interactive **browser-based 2D physics sandbox** built with [Matter.js
 - **Screenshot**: Capture and download simulation screenshots
 
 ### 🚀 Future Enhancements
-- Soft bodies and constraints (ropes, ragdolls)
+- Soft bodies and additional constraints
 - Custom object properties editor
 
 ## 🚀 Quick Start

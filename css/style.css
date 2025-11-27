@@ -3,20 +3,24 @@
     --bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --text-color: #ffffff;
     --sidebar-bg: rgba(255, 255, 255, 0.95);
-    --button-bg: #667eea;
-    --button-hover: #5a6fd8;
+    --button-bg: linear-gradient(135deg, #667eea, #764ba2);
+    --button-hover: linear-gradient(135deg, #5a6fd8, #6a4190);
     --button-text: #ffffff;
     --sidebar-shadow: rgba(0, 0, 0, 0.1);
+    --accent: #ff6b6b;
+    --success: #4ecdc4;
 }
 
 .dark {
     --bg-color: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     --text-color: #ecf0f1;
     --sidebar-bg: rgba(44, 62, 80, 0.95);
-    --button-bg: #34495e;
-    --button-hover: #2c3e50;
+    --button-bg: linear-gradient(135deg, #34495e, #2c3e50);
+    --button-hover: linear-gradient(135deg, #2c3e50, #1a252f);
     --button-text: #ecf0f1;
     --sidebar-shadow: rgba(0, 0, 0, 0.3);
+    --accent: #e74c3c;
+    --success: #27ae60;
 }
 
 /* Reset and Base Styles */
@@ -45,10 +49,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 20;
     text-align: center;
     padding: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 #home-screen h1 {
@@ -73,11 +83,19 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px var(--sidebar-shadow);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 8px var(--sidebar-shadow); }
+    50% { box-shadow: 0 4px 8px var(--sidebar-shadow), 0 0 20px var(--accent); }
+    100% { box-shadow: 0 4px 8px var(--sidebar-shadow); }
 }
 
 #start-btn:hover {
     background: var(--button-hover);
     transform: scale(1.05);
+    animation: none;
 }
 
 .links {
@@ -148,24 +166,41 @@ button {
     width: 100%;
     padding: 12px;
     margin-bottom: 10px;
-    background-color: var(--button-bg);
+    background: var(--button-bg);
     color: var(--button-text);
     border: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 12px;
     transition: all 0.3s ease;
-    font-weight: 500;
-    box-shadow: 0 2px 4px var(--sidebar-shadow);
+    font-weight: 600;
+    box-shadow: 0 4px 8px var(--sidebar-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background-color: var(--button-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px var(--sidebar-shadow);
+    background: var(--button-hover);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px var(--sidebar-shadow);
 }
 
 button:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 label {

@@ -42,6 +42,10 @@ export function addBody(body) {
     World.add(world, body);
 }
 
+export function addComposite(composite) {
+    World.add(world, composite);
+}
+
 export function removeBody(body) {
     World.remove(world, body);
 }

@@ -1,7 +1,7 @@
-import { addBody, clearAllBodies, toggleGravity, getWorld, toggleGrid, takeScreenshot, applyExplosion } from './engine.js';
+import { addBody, clearAllBodies, toggleGravity, getWorld, toggleGrid, takeScreenshot, applyExplosion, addComposite } from './engine.js';
 const Matter = window.Matter;
 const { Body } = Matter;
-import { createRandomCircle, createRandomRectangle, createCircle, createRectangle } from './objects.js';
+import { createRandomCircle, createRandomRectangle, createCircle, createRectangle, createRagdoll } from './objects.js';
 import { setCurrentTool } from './interactions.js';
 
 let sidebarOpen = false;
@@ -11,6 +11,7 @@ export function initUI() {
     const sidebar = document.getElementById('sidebar');
     const createCircleBtn = document.getElementById('create-circle');
     const createRectangleBtn = document.getElementById('create-rectangle');
+    const createRagdollBtn = document.getElementById('create-ragdoll');
     const deleteToolBtn = document.getElementById('delete-tool');
     const impulseToolBtn = document.getElementById('impulse-tool');
     const clearAllBtn = document.getElementById('clear-all');
@@ -36,6 +37,13 @@ export function initUI() {
     createRectangleBtn.addEventListener('click', () => {
         const rect = createRandomRectangle();
         addBody(rect);
+    });
+
+    createRagdollBtn.addEventListener('click', () => {
+        const x = Math.random() * (window.innerWidth - 200) + 100;
+        const y = 100;
+        const ragdoll = createRagdoll(x, y);
+        addComposite(ragdoll);
     });
 
     deleteToolBtn.addEventListener('click', () => {
