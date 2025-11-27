@@ -1,4 +1,4 @@
-import { initEngine } from './engine.js';
+import { initEngine, resizeCanvas } from './engine.js';
 import { initInteractions } from './interactions.js';
 import { initUI } from './ui.js';
 
@@ -7,4 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const render = initEngine(canvas);
     initInteractions(canvas, render);
     initUI();
+
+    window.addEventListener('resize', () => {
+        resizeCanvas(window.innerWidth, window.innerHeight);
+    });
 });

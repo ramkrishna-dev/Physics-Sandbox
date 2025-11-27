@@ -1,4 +1,4 @@
-import { Mouse, MouseConstraint, Events, Body, Vector } from 'matter-js';
+import { Mouse, MouseConstraint, Events, Body, Vector, Query, World } from 'matter-js';
 import { removeBody, applyImpulse, getWorld } from './engine.js';
 
 let mouse;
@@ -17,11 +17,8 @@ export function initInteractions(canvasElement, render) {
         }
     });
 
-    // Only add mouse constraint if not dragging
-    if (currentTool !== 'drag') {
-        // Actually, for drag, we need it, but conditionally.
-        // For simplicity, always add, but disable when other tools.
-    }
+    // Add mouse constraint to world for dragging
+    World.add(getWorld(), mouseConstraint);
 
     Events.on(mouseConstraint, 'mousedown', (event) => {
         handleMouseDown(event);
@@ -65,7 +62,7 @@ function handleTouchStart(event) {
     // Simulate mouse event
     const bodies = getWorld().bodies;
     for (let body of bodies) {
-        if (body && !body.isStatic && Matter.Query.point([body], { x, y }).length > 0) {
+        if (body && !body.isStatic && Query.point([body], { x, y }).length > 0) {
             if (currentTool === 'delete') {
                 removeBody(body);
             } else if (currentTool === 'impulse') {

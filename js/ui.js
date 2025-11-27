@@ -1,5 +1,6 @@
 import { addBody, clearAllBodies, toggleGravity, getWorld } from './engine.js';
-import { createRandomCircle, createRandomRectangle } from './objects.js';
+import { Body } from 'matter-js';
+import { createRandomCircle, createRandomRectangle, createCircle, createRectangle } from './objects.js';
 import { setCurrentTool } from './interactions.js';
 
 let sidebarOpen = false;
@@ -63,12 +64,20 @@ export function initUI() {
     saveBtn.addEventListener('click', () => {
         const world = getWorld();
         const data = {
-            bodies: world.bodies.filter(b => !b.isStatic).map(b => ({
-                type: b.circle ? 'circle' : 'rectangle',
-                position: b.position,
-                angle: b.angle,
-                vertices: b.vertices
-            }))
+            bodies: world.bodies.filter(b => !b.isStatic).map(b => {
+                const bodyData = {
+                    type: b.circle ? 'circle' : 'rectangle',
+                    position: b.position,
+                    angle: b.angle
+                };
+                if (b.circle) {
+                    bodyData.radius = b.circleRadius;
+                } else {
+                    bodyData.width = b.bounds.max.x - b.bounds.min.x;
+                    bodyData.height = b.bounds.max.y - b.bounds.min.y;
+                }
+                return bodyData;
+            })
         };
         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -94,12 +103,11 @@ export function initUI() {
                     data.bodies.forEach(b => {
                         let body;
                         if (b.type === 'circle') {
-                            body = createRandomCircle();
-                            body.position = b.position;
+                            body = createCircle(b.position.x, b.position.y, b.radius);
                         } else {
-                            body = createRandomRectangle();
-                            body.position = b.position;
+                            body = createRectangle(b.position.x, b.position.y, b.width, b.height);
                         }
+                        Body.setAngle(body, b.angle);
                         addBody(body);
                     });
                 } catch (err) {
