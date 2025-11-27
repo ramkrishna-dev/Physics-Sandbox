@@ -1,0 +1,109 @@
+/* CSS Variables for Themes */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --sidebar-bg: #f0f0f0;
+    --button-bg: #e0e0e0;
+    --button-hover: #d0d0d0;
+}
+
+.dark {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --sidebar-bg: #1e1e1e;
+    --button-bg: #333333;
+    --button-hover: #555555;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+#app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar */
+#sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--sidebar-bg);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
+
+#sidebar.open {
+    transform: translateX(0);
+}
+
+#toggle-sidebar {
+    position: absolute;
+    top: 10px;
+    left: -50px;
+    background-color: var(--button-bg);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+}
+
+#sidebar-content h2 {
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--button-bg);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 200px;
+    }
+    #toggle-sidebar {
+        left: -40px;
+        padding: 8px;
+    }
+}

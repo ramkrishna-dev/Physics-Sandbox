@@ -1,0 +1,112 @@
+import { addBody, clearAllBodies, toggleGravity, getWorld } from './engine.js';
+import { createRandomCircle, createRandomRectangle } from './objects.js';
+import { setCurrentTool } from './interactions.js';
+
+let sidebarOpen = false;
+
+export function initUI() {
+    const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+    const sidebar = document.getElementById('sidebar');
+    const createCircleBtn = document.getElementById('create-circle');
+    const createRectangleBtn = document.getElementById('create-rectangle');
+    const deleteToolBtn = document.getElementById('delete-tool');
+    const impulseToolBtn = document.getElementById('impulse-tool');
+    const clearAllBtn = document.getElementById('clear-all');
+    const gravityToggle = document.getElementById('gravity-toggle');
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const saveBtn = document.getElementById('save-scene');
+    const loadBtn = document.getElementById('load-scene');
+    const loadFileInput = document.getElementById('load-file');
+
+    toggleSidebarBtn.addEventListener('click', () => {
+        sidebarOpen = !sidebarOpen;
+        sidebar.classList.toggle('open', sidebarOpen);
+    });
+
+    createCircleBtn.addEventListener('click', () => {
+        const circle = createRandomCircle();
+        addBody(circle);
+    });
+
+    createRectangleBtn.addEventListener('click', () => {
+        const rect = createRandomRectangle();
+        addBody(rect);
+    });
+
+    deleteToolBtn.addEventListener('click', () => {
+        setCurrentTool('delete');
+    });
+
+    impulseToolBtn.addEventListener('click', () => {
+        setCurrentTool('impulse');
+    });
+
+    clearAllBtn.addEventListener('click', () => {
+        clearAllBodies();
+    });
+
+    gravityToggle.addEventListener('change', (e) => {
+        toggleGravity(e.target.checked);
+    });
+
+    toggleThemeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Load theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+    }
+
+    saveBtn.addEventListener('click', () => {
+        const world = getWorld();
+        const data = {
+            bodies: world.bodies.filter(b => !b.isStatic).map(b => ({
+                type: b.circle ? 'circle' : 'rectangle',
+                position: b.position,
+                angle: b.angle,
+                vertices: b.vertices
+            }))
+        };
+        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'scene.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    loadBtn.addEventListener('click', () => {
+        loadFileInput.click();
+    });
+
+    loadFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    clearAllBodies();
+                    data.bodies.forEach(b => {
+                        let body;
+                        if (b.type === 'circle') {
+                            body = createRandomCircle();
+                            body.position = b.position;
+                        } else {
+                            body = createRandomRectangle();
+                            body.position = b.position;
+                        }
+                        addBody(body);
+                    });
+                } catch (err) {
+                    alert('Invalid file');
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
+}
